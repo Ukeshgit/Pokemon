@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokemon/modules/home/view/mobile_layout_screen.dart';
 import 'package:pokemon/modules/home/view/mobile_layout_screen.dart';
 import 'package:pokemon/modules/home/view/web_layout_screen.dart';
 import 'package:pokemon/utils/responsive_layout.dart';
 
 
+
 void main() {
-  runApp(const PokeDex());
+  runApp(const ProviderScope(child: PokeDex()));
 }
 
 class PokeDex extends StatelessWidget {
@@ -13,9 +16,9 @@ class PokeDex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ResponsiveLayout(mobileScreenLayout: MobileLayoutScreen(), webScreenLayout: WebLayoutScreen()),
+      home: ProviderScope(child: ResponsiveLayout(mobileScreenLayout: MobileLayoutScreen(), webScreenLayout: WebLayoutScreen())),
     );
   }
 }
